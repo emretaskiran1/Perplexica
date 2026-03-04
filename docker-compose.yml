@@ -1,0 +1,19 @@
+networks:
+  dokploy-network:
+    external: true
+
+services:
+  perplexica-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: itzcrazykns1337/perplexica:latest
+    # image: perplexica-custom:latest
+    restart: unless-stopped
+    ports:
+      - "3010:3000"
+    networks:
+      - dokploy-network
+    volumes:
+      - ../files/data:/home/perplexica/data
+      - ../files/uploads:/home/perplexica/uploads
